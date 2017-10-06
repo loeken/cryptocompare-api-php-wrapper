@@ -15,5 +15,11 @@
             "email": "lwenning@cryptocompare.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "autoload":  {
+      "classmap": [
+        "cryptocompareApi.php"
+      ]
+    }
+  }
 }
