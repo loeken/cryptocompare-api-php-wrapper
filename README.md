@@ -1,0 +1,1 @@
+# cryptocompare-api-php-wrapper
