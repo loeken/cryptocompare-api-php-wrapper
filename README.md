@@ -1,7 +1,7 @@
 # cryptocompare-api-php-wrapper
 
 # 1.) Installation
-the easiest way to get start is to use composer to retrieve the files.
+the easiest way to get started is to use composer to retrieve the files.
 
 ### prepare composer inside your project folder
 The following commands will download the pre compiled composer.phar, which will download the project for us.
@@ -29,10 +29,10 @@ php composer.phar update
 ```
 
 ### short explanation of composer
-composer retrieves the last version of the code from github and downloads it to the vendor/* folder inside your project. It will also generate a autoload.php which you can then load inside your php code, this will then load all classes included in this project.
+composer retrieves the last version of the code from github and downloads it to the vendor/* folder inside your project. It will also generate a autoload.php which you can then load inside your php code, this will then load all classes included in this project. This is also usefull if you want to update our api wrapper to the last version, simply run the composer update command again.
 
 ### including our classes in your files
-if the php file is in the same folder as the vendor folder use the following line, else adjust the path.
+if your .php script file is in the same folder as the vendor folder, use the following line, else adjust the path.
 ```
 <?php
 require_once('vendor/autoload.php');
@@ -40,7 +40,7 @@ require_once('vendor/autoload.php');
 ### create object of class
 
 ```php
-$object = new Cryptocompare\CryptocompareApi();
+$cryptocompareApi = new Cryptocompare\CryptocompareApi();
 ```
 
 ### use methods to return your data
@@ -65,3 +65,15 @@ $example4 = $cryptocompareApi->getMultiPrice("1",array("BTC","ETH"),array("USD",
 ```php
 $example5 = $cryptocompareApi->getHistoricalPrice("1","BTC",array("USD","EUR","ETH"),"CCCAGG","false");
 ```
+
+
+### full working code example
+```php
+<?php
+require_once('vendor/autoload.php');
+
+$cryptocompareApi = new Cryptocompare\CryptocompareApi();
+$example1 = $cryptocompareApi->getAvailableCalls();
+
+print_r($example1);
+?>
