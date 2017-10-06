@@ -38,9 +38,15 @@ if your .php script file is in the same folder as the vendor folder, use the fol
 require_once('vendor/autoload.php');
 ```
 ### create object of class
+There are currently 2 available classes under the namespaces
+\Cryptocompare\CryptocompareApi and \Çryptocompare\Price .
 
+The first can be used to get info about the api, the second one will display info about crypto prices/conversions.
 ```php
 $cryptocompareApi = new Cryptocompare\CryptocompareApi();
+
+
+$cryptocomparePrice = new Cryptocompare\CryptocomparePrice();
 ```
 
 ### use methods to return your data
@@ -51,19 +57,19 @@ $example1 = $cryptocompareApi->getAvailableCalls();
 ```
 #### get rate limits for your IP
 ```php
-$example1 = $cryptocompareApi->getRateLimits();
+$example1 = $cryptocomparePrice->getRateLimits();
 ```
 #### convert a currency to an array of other currencies
 ```php
-$example3 = $cryptocompareApi->getSinglePrice("1","BTC","USD","CCCAGG","false");
+$example3 = $cryptocomparePrice->getSinglePrice("1","BTC","USD","CCCAGG","false");
 ```
 #### convert an array of currencies to another array of currencies
 ```php
-$example4 = $cryptocompareApi->getMultiPrice("1",array("BTC","ETH"),array("USD","EUR","ETH"),"CCCAGG","false");
+$example4 = $cryptocomparePrice->getMultiPrice("1",array("BTC","ETH"),array("USD","EUR","ETH"),"CCCAGG","false");
 ```
 #### get all historical pricing data
 ```php
-$example5 = $cryptocompareApi->getHistoricalPrice("1","BTC",array("USD","EUR","ETH"),"CCCAGG","false");
+$example5 = $cryptocomparePrice->getHistoricalPrice("1","BTC",array("USD","EUR","ETH"),"CCCAGG","false");
 ```
 
 
@@ -74,6 +80,10 @@ require_once('vendor/autoload.php');
 
 $cryptocompareApi = new Cryptocompare\CryptocompareApi();
 $example1 = $cryptocompareApi->getAvailableCalls();
+
+$cryptocomparePrice = new Cryptocompare\CryptocompareApi();
+$example2 = $cryptocomparePrice->getAvailableCalls();
+
 
 print_r($example1);
 ?>
