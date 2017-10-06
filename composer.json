@@ -16,10 +16,10 @@
         }
     ],
     "minimum-stability": "dev",
-    "autoload":  {
-      "classmap": [
-        "cryptocompareApi.php"
-      ]
+    "autoload": {
+        "psr-4": {
+            "Cryptocompare\\":"src/"
+        }
     }
-  }
 }
+
