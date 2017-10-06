@@ -39,7 +39,7 @@ require_once('vendor/autoload.php');
 ```
 ### create object of class
 There are currently 2 available classes under the namespaces
-\Cryptocompare\CryptocompareApi and \Çryptocompare\Price .
+\Cryptocompare\CryptocompareApi and \Cryptocompare\Price .
 
 The first can be used to get info about the api, the second one will display info about crypto prices/conversions.
 ```php
