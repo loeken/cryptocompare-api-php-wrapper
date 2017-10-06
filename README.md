@@ -46,7 +46,7 @@ The first can be used to get info about the api, the second one will display inf
 $cryptocompareApi = new Cryptocompare\CryptocompareApi();
 
 
-$cryptocomparePrice = new Cryptocompare\CryptocomparePrice();
+$cryptocomparePrice = new Cryptocompare\Price();
 ```
 
 ### use methods to return your data
@@ -81,7 +81,7 @@ require_once('vendor/autoload.php');
 $cryptocompareApi = new Cryptocompare\CryptocompareApi();
 $example1 = $cryptocompareApi->getAvailableCalls();
 
-$cryptocomparePrice = new Cryptocompare\CryptocompareApi();
+$cryptocomparePrice = new Cryptocompare\Price();
 $example2 = $cryptocomparePrice->getAvailableCalls();
 
 
