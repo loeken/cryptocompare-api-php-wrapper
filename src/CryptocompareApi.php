@@ -19,7 +19,7 @@ class CryptocompareApi
     /**
      * @var bool - if set to true will die() and print exception when http request fails -> not recommended in production enviroment
      */
-    public $debug = false;
+    public $debug = true;
 
 
     // do not edit bellow unless you know what you are doing
@@ -55,6 +55,32 @@ class CryptocompareApi
     public function getAvailableCalls() {
         $calls = $this->getRequest("public","/");
         return $calls;
+    }
+
+    /**
+     * @return bool|mixed - returns mining contracts
+     */
+    public function getMiningContracts() {
+        $contracts = $this->getRequest("private","/miningcontracts");
+        return $contracts;
+    }
+
+    /**
+     * @return bool|mixed - returns mining equipment added on website
+     */
+    public function getMiningEquipment() {
+        $equipment = $this->getRequest("private","/miningequipment");
+        return $equipment;
+    }
+    public function getTopPairs($fsym = "BTC", $tsym = "EUR", $limit = 5, $sign = false ) {
+        $params = array(
+            "fsym" => $fsym,
+            "tsym" => $tsym,
+            "limit" => $limit,
+            "sign" => $sign,
+        );
+        $pairs = $this->getRequest("public","/data/top/pairs", $params);
+        return $pairs;
     }
 
     /**
@@ -103,6 +129,9 @@ class CryptocompareApi
             return false;
         }
         try {
+            if ($this->debug == "true" ) {
+                echo "URI: " . $uri . "<br>";
+            }
             $client = new \GuzzleHttp\Client(['verify' => false]);
             $res = $client->request('GET', $uri, array(
                 "query" => $options
@@ -121,7 +150,11 @@ class CryptocompareApi
         }
     }
 
-    public function arrayToCommaSeperatedString ($input ) {
+    /**
+     * @param array $input - an array of strings ( currencies )
+     * @return string - "EUR,USD,BTC"
+     */
+    public function arrayToCommaSeperatedString ($input = array() ) {
         $output = "";
         foreach ($input as $i => $t ) {
             if ($i == 0) {

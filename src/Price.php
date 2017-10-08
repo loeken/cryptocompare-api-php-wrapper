@@ -18,6 +18,7 @@ class Price extends CryptocompareApi
      * @param string $extraParams - extra parameters
      * @param bool $sign - server sided signing of request
      * @return mixed
+     * Description: Get data for a currency pair. It returns general block explorer information, aggregated data and individual data for each exchange available.
      */
     public function getSinglePrice($tryConversion = "1", $fsym = "BTC", $tsyms = "USD", $e = "CCCAGG", $sign = false) {
         $extraParams = $this->appplicationName;;
@@ -67,9 +68,9 @@ class Price extends CryptocompareApi
      * @param bool $sign - server sided signing of request
      * @return mixed
      */
-    public function getHistoricalPrice($tryConversion = "1", $fsym = "BTC", $tsyms = array("USD","EUR"), $e = "CCCAGG", $sign = false) {
+    public function getHistoricalPrice($tryConversion = "1", $fsym = "BTC", $tsyms = array("USD","EUR"), $ts = "1507469305", $e = "CCCAGG", $sign = false) {
         $_tsyms = "";
-        $extraParams = $this->appplicationName;;
+        $extraParams = $this->appplicationName;
         foreach ($tsyms as $i => $tsym ) {
             if ($i == 0 ) {
                 $_tsyms = $tsym;
@@ -83,9 +84,11 @@ class Price extends CryptocompareApi
             "tsyms" => $_tsyms,
             "e" => $e,
             "extraParams" => $extraParams,
-            "sign" => $sign
+            "sign" => $sign,
+            "ts" => $ts,
         );
-        $r = $this->getRequest("public", "/data/price", $params);
+        $r = $this->getRequest("public", "/data/pricehistorical", $params);
         return $r;
     }
+
 }
