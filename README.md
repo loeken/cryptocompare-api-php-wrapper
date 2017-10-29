@@ -57,7 +57,9 @@ $example1 = $cryptocompareApi->getAvailableCalls();
 ```
 #### get rate limits for your IP
 ```php
-$example1 = $cryptocomparePrice->getRateLimits();
+$example1 = $cryptocompareApi->getRateLimits();
+
+
 ```
 #### convert a currency to an array of other currencies
 ```php
@@ -67,6 +69,8 @@ $example3 = $cryptocomparePrice->getSinglePrice("1","BTC","USD","CCCAGG","false"
 ```php
 $example4 = $cryptocomparePrice->getMultiPrice("1",array("BTC","ETH"),array("USD","EUR","ETH"),"CCCAGG","false");
 ```
+
+
 #### get all historical pricing data
 ```php
 $example5 = $cryptocomparePrice->getHistoricalPrice("1","BTC",array("USD","EUR","ETH"),"CCCAGG","false");
