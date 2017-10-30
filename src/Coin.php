@@ -13,17 +13,7 @@ class Coin extends CryptocompareApi
     /**
      * @return bool|mixed - returns general info for all the coins available on the website.
      */
-    public function getList() {
-        $extraParams = $this->appplicationName;;
-        $params = array();
-        $action = "/coinlist";
-        $r = $this->getRequest("private", $action, $params);
-        return $r;
-    }
-    /**
-     * @return bool|mixed - returns general info for all the coins available on the website.
-     */
-    public function getListWithContent($sign = false) {
+    public function getList($sign = false) {
         $extraParams = $this->appplicationName;
         $params = array(
             "extraParams" => $extraParams,
@@ -71,90 +61,4 @@ class Coin extends CryptocompareApi
         return $r;
     }
 
-    /**
-     * @param string $tryConversion
-     * @param string $fsym
-     * @param string $tsym
-     * @param string $e
-     * @param bool $sign
-     * @param int $aggregate
-     * @param int $limit
-     * @param null $toTs
-     * @return bool|mixed
-     */
-    public function getHistoMinute($tryConversion = "1", $fsym = "BTC", $tsym = "EUR", $e = "CCCAGG", $sign = false, $aggregate = 1, $limit = 1440, $toTs = NULL) {
-        $extraParams = $this->appplicationName;
-
-        $params = array(
-            "tryConversion" => $tryConversion,
-            "fsym" => $fsym,
-            "tsym" => $tsym,
-            "e" => $e,
-            "extraParams" => $extraParams,
-            "sign" => $sign,
-            "aggregate" => $aggregate,
-            "limit" => $limit,
-            "toTs" => $toTs,
-        );
-        $r = $this->getRequest("public", "/data/histominute", $params);
-        return $r;
-    }
-
-    /**
-     * @param string $tryConversion
-     * @param string $fsym
-     * @param string $tsym
-     * @param string $e
-     * @param bool $sign
-     * @param int $aggregate
-     * @param int $limit
-     * @param null $toTs
-     * @return bool|mixed
-     */
-    public function getHistoHour($tryConversion = "1", $fsym = "BTC", $tsym = "EUR", $e = "CCCAGG", $sign = false, $aggregate = 1, $limit = 1440, $toTs = NULL) {
-        $extraParams = $this->appplicationName;
-
-        $params = array(
-            "tryConversion" => $tryConversion,
-            "fsym" => $fsym,
-            "tsym" => $tsym,
-            "e" => $e,
-            "extraParams" => $extraParams,
-            "sign" => $sign,
-            "aggregate" => $aggregate,
-            "limit" => $limit,
-            "toTs" => $toTs,
-        );
-        $r = $this->getRequest("public", "/data/histohour", $params);
-        return $r;
-    }
-
-    /**
-     * @param string $tryConversion
-     * @param string $fsym
-     * @param string $tsym
-     * @param string $e
-     * @param bool $sign
-     * @param int $aggregate
-     * @param int $limit
-     * @param null $toTs
-     * @return bool|mixed
-     */
-    public function getHistoDay($tryConversion = "1", $fsym = "BTC", $tsym = "EUR", $e = "CCCAGG", $sign = false, $aggregate = 1, $limit = 1440, $toTs = NULL) {
-        $extraParams = $this->appplicationName;
-
-        $params = array(
-            "tryConversion" => $tryConversion,
-            "fsym" => $fsym,
-            "tsym" => $tsym,
-            "e" => $e,
-            "extraParams" => $extraParams,
-            "sign" => $sign,
-            "aggregate" => $aggregate,
-            "limit" => $limit,
-            "toTs" => $toTs,
-        );
-        $r = $this->getRequest("public", "/data/histoday", $params);
-        return $r;
-    }
 }

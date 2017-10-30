@@ -17,10 +17,9 @@ class Market extends CryptocompareApi
      * @param bool $sign
      * @return bool|mixed
      */
-    public function getTopPairs($fsym = "BTC", $tsym = "EUR", $limit = 5, $sign = false ) {
+    public function getTopPairs($fsym = "BTC", $limit = 5, $sign = false ) {
         $params = array(
             "fsym" => $fsym,
-            "tsym" => $tsym,
             "limit" => $limit,
             "sign" => $sign,
         );

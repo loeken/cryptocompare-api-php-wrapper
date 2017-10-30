@@ -87,8 +87,11 @@ class CryptocompareApi
     /**
      * @return bool|mixed - returns mining equipment added on website
      */
-    public function getNews($sign = false ) {
+    public function getNews($feeds = "ALL_NEWS_FEEDS", $lTs = false, $lang = "EN",$sign = false ) {
         $params = array(
+            "feeds" => $feeds,
+            "lTs" => $lTs,
+            "lang" => $lang,
             "sign" => $sign,
         );
         $equipment = $this->getRequest("public","/data/news/providers", $params);
