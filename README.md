@@ -48,10 +48,11 @@ $cryptocompareApi = new Cryptocompare\CryptocompareApi();
 $cryptocomparePrice = new Cryptocompare\Price();
 
 $cryptocompareCoin = new Cryptocompare\Coin();
+
+$cryptocompareMarket = new Cryptocompare\Market();
 ```
 
 ## Cryptocompare\CryptocompareApi
-
 #### get all available calls
 ```php
 $example1 = $cryptocompareApi->getAvailableCalls();
@@ -78,7 +79,7 @@ $example6 = $cryptocompareApi->getNews();
 ```
 
 
-## Cryptocompare\CryptocomparePrice
+## Cryptocompare\Price
 #### convert a currency to an array of other currencies
 ```php
 $example1 = $cryptocomparePrice->getSinglePrice("1","BTC","USD","CCCAGG","false");
@@ -94,12 +95,10 @@ $example3 = $cryptocomparePrice->getHistoricalPrice("1", "BTC", array("USD","EUR
 #### get trading information for currencies
 ```php
 $example4 = $cryptocomparePrice->getMultiPriceFull("1", array("BTC","ETH"), array("USD","EUR"),"CCCAGG", false);
-
 ```
 #### get trading information for currencies
 ```php
 $example5 = $cryptocomparePrice->getGenerateAvg("1", "BTC", "EUR", "Coinbase,Kraken",false);
-
 ```
 #### get trading information for currencies
 ```php
@@ -114,9 +113,7 @@ $example7 = $cryptocomparePrice->getSubsWatchlist("1", array("BTC", "ETH"), "EUR
 $example8 = $cryptocomparePrice->getSubs("1", "BTC", array("USD", "EUR"), "CCCAGG", false);
 ```
 
-## Cryptocompare\CryptocompareCoin
-
-
+## Cryptocompare\Coin
 #### get all coins
 ```php
 $example1 = $cryptocompareCoin->getList();
@@ -127,29 +124,50 @@ $example2 = $cryptocompareCoin->getTopPairs("BTC", "EUR", 5, false);
 ```
 #### get all historical data for minute
 ```php
-$example2 = $cryptocompareCoin->getHistoMinute(1,"BTC", "EUR","CCCAGG", false, 1, 1440, NULL);
+$example3 = $cryptocompareCoin->getHistoMinute(1,"BTC", "EUR","CCCAGG", false, 1, 1440, NULL);
 ```
 #### get all historical data for minute
 ```php
-$example3 = $cryptocompareCoin->getHistoHour(1,"BTC", "EUR","CCCAGG", false, 1, 1440, NULL);
+$example4 = $cryptocompareCoin->getHistoHour(1,"BTC", "EUR","CCCAGG", false, 1, 1440, NULL);
 ```
 #### get all historical data for minute
 ```php
-$example4 = $cryptocompareCoin->getHistoDay(1,"BTC", "EUR","CCCAGG", false, 1, 1440, NULL);
+$example5 = $cryptocompareCoin->getHistoDay(1,"BTC", "EUR","CCCAGG", false, 1, 1440, NULL);
 ```
 #### get snapshot
 ```php
-$example5 = $cryptocompareCoin->getSnapshot("BTC", "EUR");
+$example6 = $cryptocompareCoin->getSnapshot("BTC", "EUR");
 ```
 #### get snapshot by coin id ( get id from ->getList() )
 ```php
-$example6 = $cryptocompareCoin->getSnapshotFullById(1182);
+$example7 = $cryptocompareCoin->getSnapshotFullById(1182);
 ```
 #### get social stats by coin id ( get id from ->getList() )
 ```php
-$example7 = $cryptocompareCoin->getSocialStats(1182);
+$example8 = $cryptocompareCoin->getSocialStats(1182);
 ```
 
+## Cryptocompare\Market
+#### get top pairs
+```php
+$example1 = $cryptocompareMarket->getTopPairs("BTC","EUR", 5,false );
+
+```
+#### get top exchanges
+```php
+$example1 = $cryptocompareMarket->getTopExchanges("BTC", "EUR", 5, false);
+
+```
+#### get top volumes
+```php
+$example1 = $cryptocompareMarket->getTopVolumes("EUR", 20, false);
+
+```
+#### get all markets
+```php
+$example1 = $cryptocompareMarket->getList(false);
+
+```
 
 ### full working code example
 ```php
