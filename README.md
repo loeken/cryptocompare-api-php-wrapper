@@ -68,6 +68,14 @@ $example3 = $cryptocompareApi->getMiningContracts();
 ```php
 $example4 = $cryptocompareApi->getMiningEquipment();
 ```
+#### get news providers
+```php
+$example5 = $cryptocompareApi->getNewsProviders();
+```
+#### get news
+```php
+$example6 = $cryptocompareApi->getNews();
+```
 
 
 ## Cryptocompare\CryptocomparePrice
@@ -82,7 +90,28 @@ $example2 = $cryptocomparePrice->getMultiPrice("1",array("BTC","ETH"),array("USD
 #### convert an array of currencies to another array of currencies
 ```php
 $example3 = $cryptocomparePrice->getHistoricalPrice("1", "BTC", array("USD","EUR"), "1507469305", "CCCAGG", false);
+```
+#### get trading information for currencies
+```php
+$example4 = $cryptocomparePrice->getMultiPriceFull("1", array("BTC","ETH"), array("USD","EUR"),"CCCAGG", false);
 
+```
+#### get trading information for currencies
+```php
+$example5 = $cryptocomparePrice->getGenerateAvg("1", "BTC", "EUR", "Coinbase,Kraken",false);
+
+```
+#### get trading information for currencies
+```php
+$example6 = $cryptocomparePrice->getDayAvg("1", "BTC", "EUR", "CCCAGG", "HourVWAP", 0, "1487116800", false);
+```
+#### get trading information for currencies
+```php
+$example7 = $cryptocomparePrice->getSubsWatchlist("1", array("BTC", "ETH"), "EUR", "CCCAGG",false);
+```
+#### get all streamer subscription channels for the requested pair
+```php
+$example8 = $cryptocomparePrice->getSubs("1", "BTC", array("USD", "EUR"), "CCCAGG", false);
 ```
 
 ## Cryptocompare\CryptocompareCoin
@@ -107,6 +136,18 @@ $example3 = $cryptocompareCoin->getHistoHour(1,"BTC", "EUR","CCCAGG", false, 1, 
 #### get all historical data for minute
 ```php
 $example4 = $cryptocompareCoin->getHistoDay(1,"BTC", "EUR","CCCAGG", false, 1, 1440, NULL);
+```
+#### get snapshot
+```php
+$example5 = $cryptocompareCoin->getSnapshot("BTC", "EUR");
+```
+#### get snapshot by coin id ( get id from ->getList() )
+```php
+$example6 = $cryptocompareCoin->getSnapshotFullById(1182);
+```
+#### get social stats by coin id ( get id from ->getList() )
+```php
+$example7 = $cryptocompareCoin->getSocialStats(1182);
 ```
 
 

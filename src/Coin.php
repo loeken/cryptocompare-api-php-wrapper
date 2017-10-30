@@ -20,6 +20,24 @@ class Coin extends CryptocompareApi
         $r = $this->getRequest("private", $action, $params);
         return $r;
     }
+    /**
+     * @return bool|mixed - returns general info for all the coins available on the website.
+     */
+    public function getListWithContent($sign = false) {
+        $extraParams = $this->appplicationName;
+        $params = array(
+            "extraParams" => $extraParams,
+            "sign" => $sign
+        );
+        $r = $this->getRequest("public", "/data/all/coinlist", $params);
+        return $r;
+    }
+
+    /**
+     * @param string $fsym
+     * @param string $tsym
+     * @return bool|mixed
+     */
     public function getSnapshot($fsym = "BTC", $tsym = "EUR") {
         $params = array(
             "fsym" => $fsym,
@@ -28,6 +46,11 @@ class Coin extends CryptocompareApi
         $r = $this->getRequest("private", "/coinsnapshot", $params);
         return $r;
     }
+
+    /**
+     * @param int $id
+     * @return bool|mixed
+     */
     public function getSnapshotFullById($id = 0) {
         $params = array(
             "id" => $id,
@@ -35,6 +58,11 @@ class Coin extends CryptocompareApi
         $r = $this->getRequest("private", "/coinsnapshotfullbyid", $params);
         return $r;
     }
+
+    /**
+     * @param int $id
+     * @return bool|mixed
+     */
     public function getSocialStats($id = 0) {
         $params = array(
             "id" => $id,
@@ -42,6 +70,18 @@ class Coin extends CryptocompareApi
         $r = $this->getRequest("private", "/socialstats", $params);
         return $r;
     }
+
+    /**
+     * @param string $tryConversion
+     * @param string $fsym
+     * @param string $tsym
+     * @param string $e
+     * @param bool $sign
+     * @param int $aggregate
+     * @param int $limit
+     * @param null $toTs
+     * @return bool|mixed
+     */
     public function getHistoMinute($tryConversion = "1", $fsym = "BTC", $tsym = "EUR", $e = "CCCAGG", $sign = false, $aggregate = 1, $limit = 1440, $toTs = NULL) {
         $extraParams = $this->appplicationName;
 
@@ -59,6 +99,18 @@ class Coin extends CryptocompareApi
         $r = $this->getRequest("public", "/data/histominute", $params);
         return $r;
     }
+
+    /**
+     * @param string $tryConversion
+     * @param string $fsym
+     * @param string $tsym
+     * @param string $e
+     * @param bool $sign
+     * @param int $aggregate
+     * @param int $limit
+     * @param null $toTs
+     * @return bool|mixed
+     */
     public function getHistoHour($tryConversion = "1", $fsym = "BTC", $tsym = "EUR", $e = "CCCAGG", $sign = false, $aggregate = 1, $limit = 1440, $toTs = NULL) {
         $extraParams = $this->appplicationName;
 
@@ -76,6 +128,18 @@ class Coin extends CryptocompareApi
         $r = $this->getRequest("public", "/data/histohour", $params);
         return $r;
     }
+
+    /**
+     * @param string $tryConversion
+     * @param string $fsym
+     * @param string $tsym
+     * @param string $e
+     * @param bool $sign
+     * @param int $aggregate
+     * @param int $limit
+     * @param null $toTs
+     * @return bool|mixed
+     */
     public function getHistoDay($tryConversion = "1", $fsym = "BTC", $tsym = "EUR", $e = "CCCAGG", $sign = false, $aggregate = 1, $limit = 1440, $toTs = NULL) {
         $extraParams = $this->appplicationName;
 
@@ -93,5 +157,4 @@ class Coin extends CryptocompareApi
         $r = $this->getRequest("public", "/data/histoday", $params);
         return $r;
     }
-
 }

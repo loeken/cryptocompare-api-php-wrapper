@@ -90,5 +90,133 @@ class Price extends CryptocompareApi
         $r = $this->getRequest("public", "/data/pricehistorical", $params);
         return $r;
     }
+    /**
+     * @param string $tryConversion - type of currency to convert from - default: BTC
+     * @param array $fsyms - base currencies to convert from
+     * @param array $tsyms - currencies to convert to
+     * @param string $e - the exchange
+     * @param string $extraParams - extra parameters
+     * @param bool $sign - server sided signing of request
+     * @return mixed
+     */
+    public function getMultiPriceFull($tryConversion = "1", $fsyms = array("BTC","ETH"), $tsyms = array("USD","EUR"), $e = "CCCAGG", $sign = false) {
+        $_tsyms = $this->arrayToCommaSeperatedString($tsyms);
+        $_fsyms = $this->arrayToCommaSeperatedString($fsyms);
+        $extraParams = $this->appplicationName;;
 
+        $params = array(
+            "tryConversion" => $tryConversion,
+            "fsyms" => $_fsyms,
+            "tsyms" => $_tsyms,
+            "e" => $e,
+            "extraParams" => $extraParams,
+            "sign" => $sign
+        );
+        $r = $this->getRequest("public", "/data/pricemultifull", $params);
+        return $r;
+    }
+
+    /**
+     * @param string $tryConversion - type of currency to convert from - default: BTC
+     * @param string $fsym - base currency to convert from
+     * @param string $tsym - currency to convert to
+     * @param string $e - the exchange
+     * @param string $extraParams - extra parameters
+     * @param bool $sign - server sided signing of request
+     * @return mixed
+     */
+    public function getGenerateAvg($tryConversion = "1", $fsym = "BTC", $tsym = "EUR", $markets = "Coinbase,Kraken", $sign = false) {
+
+        $extraParams = $this->appplicationName;;
+
+        $params = array(
+            "tryConversion" => $tryConversion,
+            "fsym" => $fsym,
+            "tsym" => $tsym,
+            "markets" => $markets,
+            "extraParams" => $extraParams,
+            "sign" => $sign
+        );
+        $r = $this->getRequest("public", "/data/generateAvg", $params);
+        return $r;
+    }
+
+    /**
+     * @param string $tryConversion - type of currency to convert from - default: BTC
+     * @param string $fsym - base currency to convert from
+     * @param string $tsym - currency to convert to
+     * @param string $e - the exchange
+     * @param string $extraParams - extra parameters
+     * @param bool $sign - server sided signing of request
+     * @return mixed
+     */
+    public function getDayAvg($tryConversion = "1", $fsym = "BTC", $tsym = "EUR", $e = "CCCAGG", $avgType = "HourVWAP", $UTCHourDiff = 0, $toTs = "1487116800", $sign = false) {
+
+        $extraParams = $this->appplicationName;;
+
+        $params = array(
+            "tryConversion" => $tryConversion,
+            "avgType" => $avgType,
+            "UTCHourDiff" => $UTCHourDiff,
+            "toTs" => $toTs,
+            "fsym" => $fsym,
+            "tsym" => $tsym,
+            "e" => $e,
+            "extraParams" => $extraParams,
+            "sign" => $sign
+        );
+        $r = $this->getRequest("public", "/data/dayAvg", $params);
+        return $r;
+    }
+
+    /**
+     * @param string $tryConversion - type of currency to convert from - default: BTC
+     * @param array $fsyms - base currencies to convert from
+     * @param string $tsym - currency to convert to
+     * @param string $e - the exchange
+     * @param string $extraParams - extra parameters
+     * @param bool $sign - server sided signing of request
+     * @return mixed
+     */
+    public function getSubsWatchlist($tryConversion = "1", $fsyms = array("BTC", "ETH"), $tsym = "EUR", $e = "CCCAGG", $sign = false) {
+
+        $_fsyms = $this->arrayToCommaSeperatedString($fsyms);
+        $extraParams = $this->appplicationName;;
+
+        $params = array(
+            "tryConversion" => $tryConversion,
+            "fsyms" => $_fsyms,
+            "tsym" => $tsym,
+            "e" => $e,
+            "extraParams" => $extraParams,
+            "sign" => $sign
+        );
+        $r = $this->getRequest("public", "/data/subsWatchlist", $params);
+        return $r;
+    }
+    /**
+     * @param string $tryConversion - type of currency to convert from - default: BTC
+     * @param string $fsym - base currency to convert from
+     * @param array $tsyms - currencies to convert to
+     * @param string $e - the exchange
+     * @param string $extraParams - extra parameters
+     * @param bool $sign - server sided signing of request
+     * @return mixed
+     */
+    public function getSubs($tryConversion = "1", $fsym = "BTC", $tsyms = array("USD", "EUR"), $e = "CCCAGG", $sign = false) {
+
+        $_tsyms = $this->arrayToCommaSeperatedString($tsyms);
+        $extraParams = $this->appplicationName;;
+
+        $params = array(
+            "tryConversion" => $tryConversion,
+            "fsym" => $fsym,
+            "tsyms" => $_tsyms,
+            "e" => $e,
+            "extraParams" => $extraParams,
+            "sign" => $sign
+        );
+        $r = $this->getRequest("public", "/data/subs", $params);
+        return $r;
+    }
 }

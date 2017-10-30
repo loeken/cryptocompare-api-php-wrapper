@@ -72,15 +72,27 @@ class CryptocompareApi
         $equipment = $this->getRequest("private","/miningequipment");
         return $equipment;
     }
-    public function getTopPairs($fsym = "BTC", $tsym = "EUR", $limit = 5, $sign = false ) {
+
+    /**
+     * @return bool|mixed - returns mining equipment added on website
+     */
+    public function getNewsProviders($sign = false ) {
         $params = array(
-            "fsym" => $fsym,
-            "tsym" => $tsym,
-            "limit" => $limit,
             "sign" => $sign,
         );
-        $pairs = $this->getRequest("public","/data/top/pairs", $params);
-        return $pairs;
+        $equipment = $this->getRequest("public","/data/news/providers", $params);
+        return $equipment;
+    }
+
+    /**
+     * @return bool|mixed - returns mining equipment added on website
+     */
+    public function getNews($sign = false ) {
+        $params = array(
+            "sign" => $sign,
+        );
+        $equipment = $this->getRequest("public","/data/news/providers", $params);
+        return $equipment;
     }
 
     /**
@@ -165,4 +177,6 @@ class CryptocompareApi
         }
         return $output;
     }
+
+
 }
