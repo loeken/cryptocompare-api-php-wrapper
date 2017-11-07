@@ -14,7 +14,7 @@ class CryptocompareApi
     /**
      * @var string - defines the name of your application - change this
      */
-    public $appplicationName = "default_php_wrapper";
+    public $applicationName = "default_php_wrapper";
 
     /**
      * @var bool - if set to true will die() and print exception when http request fails -> not recommended in production enviroment
@@ -144,7 +144,7 @@ class CryptocompareApi
             return false;
         }
         try {
-            if ($this->debug == "true" ) {
+            if ($this->debug == true ) {
                 echo "URI: " . $uri . "<br>";
             }
             $client = new \GuzzleHttp\Client(['verify' => false]);
