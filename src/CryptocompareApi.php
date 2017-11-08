@@ -14,12 +14,12 @@ class CryptocompareApi
     /**
      * @var string - defines the name of your application - change this
      */
-    public $applicationName = "default_php_wrapper";
+    public $appplicationName = "default_php_wrapper";
 
     /**
      * @var bool - if set to true will die() and print exception when http request fails -> not recommended in production enviroment
      */
-    public $debug = true;
+    public $debug = false;
 
 
     // do not edit bellow unless you know what you are doing
@@ -181,5 +181,19 @@ class CryptocompareApi
         return $output;
     }
 
+    /**
+     * CryptocompareApi constructor.
+     * @param bool $debug
+     */
+    function __construct($debug = false)
+    {
+        $this->setDebug($debug);
+    }
 
+    /**
+     * @param $debug
+     */
+    public function setDebug($debug) {
+        $this->debug = $debug;
+    }
 }
