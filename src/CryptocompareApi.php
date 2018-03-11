@@ -103,12 +103,26 @@ class CryptocompareApi
      * @return bool|mixed
      */
     public function getRateLimits($timespan = "hour" ) {
-        if (($timespan == "hour" ) || ($timespan == "second" )) {
+        if (($timespan == "hour" )) {
             $limits = $this->getRequest("public", "/stats/rate/hour/limit");
             return $limits;
-        }
-        else {
-            $this->errorMessages[] = "avaiable options for timespan are hour or second";
+        }elseif ($timespan == "second"){
+            $limits = $this->getRequest("public", "/stats/rate/second/limit");
+            return $limits;
+        }elseif ($timespan == "minute"){
+            $limits = $this->getRequest("public", "/stats/rate/minute/limit");
+            return $limits;
+        }elseif ($timespan == "all"){
+
+            $limits = (object) array();
+
+            $limits->minute = $this->getRequest("public", "/stats/rate/minute/limit");
+            $limits->second = $this->getRequest("public", "/stats/rate/second/limit");
+            $limits->hour = $this->getRequest("public", "/stats/rate/hour/limit");
+
+            return $limits;
+        }else {
+            $this->errorMessages[] = "avaiable options for timespan are hour or minute or second";
             return false;
         }
     }
