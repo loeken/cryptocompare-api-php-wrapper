@@ -8,7 +8,7 @@
   "require-dev": {
     "guzzlehttp/guzzle": "6.3.*"
   },
-  "license": "Creative Commons Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0) license",
+  "license": "BSD-3-Clause",
   "authors": [{
     "name": "Lukas Wenning",
     "email": "lwenning@cryptocompare.com"
