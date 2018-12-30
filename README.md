@@ -56,7 +56,7 @@ require_once('vendor/autoload.php');
 
 
 $cryptocomparePrice = new Cryptocompare\Price();
-$example1 = $cryptocomparePrice->getSingleSymbolPriceEndpoint("1","BTC","USD","CCCAGG","false");
+$example1 = $cryptocomparePrice->getSingleSymbolPriceEndpoint("true","BTC","USD","CCCAGG","false");
 print_r($example1);
 
 ?>
