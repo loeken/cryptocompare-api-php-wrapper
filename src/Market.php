@@ -12,10 +12,9 @@ class Market extends CryptocompareApi
 {
     /**
      * @param string $fsym
-     * @param string $tsym
      * @param int $limit
      * @param bool $sign
-     * @return bool|mixed
+     * @return mixed
      */
     public function getTopPairs($fsym = "BTC", $limit = 5, $sign = false ) {
         $params = array(
@@ -26,11 +25,12 @@ class Market extends CryptocompareApi
         $pairs = $this->getRequest("public","/data/top/pairs", $params);
         return $pairs;
     }
+
     /**
-     * @param string $fsym - base currency to convert from
-     * @param string $tsym - currency to convert to
-     * @param int $limit - limit of results
-     * @param bool $sign - server sided signing of request
+     * @param string $fsym
+     * @param string $tsym
+     * @param int $limit
+     * @param bool $sign
      * @return mixed
      */
     public function getTopExchanges($fsym = "BTC", $tsym = "EUR", $limit = 5, $sign = false) {
@@ -47,9 +47,11 @@ class Market extends CryptocompareApi
         $r = $this->getRequest("public", "/data/top/exchanges", $params);
         return $r;
     }
+
     /**
-     * @param string $tsym - currency to convert to
-     * @param bool $sign - server sided signing of request
+     * @param string $tsym
+     * @param int $limit
+     * @param bool $sign
      * @return mixed
      */
     public function getTopVolumes($tsym = "EUR", $limit = 20, $sign = false) {
@@ -67,7 +69,7 @@ class Market extends CryptocompareApi
     }
 
     /**
-     * @param bool $sign - server sided signing of request
+     * @param bool $sign
      * @return mixed
      */
     public function getList($sign = false) {

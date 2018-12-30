@@ -50,97 +50,7 @@ class CryptocompareApi
     public $body = "";
 
     /**
-     * retrieves an array of objects listing all available api endpoints
-     */
-    public function getAvailableCalls() {
-        $calls = $this->getRequest("public","/");
-        return $calls;
-    }
-
-    /**
-     * @return bool|mixed - returns mining contracts
-     */
-    public function getMiningContracts() {
-        $contracts = $this->getRequest("private","/miningcontracts");
-        return $contracts;
-    }
-
-    /**
-     * @return bool|mixed - returns mining equipment added on website
-     */
-    public function getMiningEquipment() {
-        $equipment = $this->getRequest("private","/miningequipment");
-        return $equipment;
-    }
-
-    /**
-     * @return bool|mixed - returns mining equipment added on website
-     */
-    public function getNewsProviders($sign = false ) {
-        $params = array(
-            "sign" => $sign,
-        );
-        $equipment = $this->getRequest("public","/data/news/providers", $params);
-        return $equipment;
-    }
-
-    /**
-     * @return bool|mixed - returns mining equipment added on website
-     */
-    public function getNews($feeds = "ALL_NEWS_FEEDS", $lTs = false, $lang = "EN",$sign = false ) {
-        $params = array(
-            "feeds" => $feeds,
-            "lTs" => $lTs,
-            "lang" => $lang,
-            "sign" => $sign,
-        );
-        $equipment = $this->getRequest("public","/data/news", $params);
-        return $equipment;
-    }
-
-    /**
-     * @param string $timespan - available options: hour / second
-     * @return bool|mixed
-     */
-    public function getRateLimits($timespan = "hour" ) {
-        if (($timespan == "hour" )) {
-            $limits = $this->getRequest("public", "/stats/rate/hour/limit");
-            return $limits;
-        }elseif ($timespan == "second"){
-            $limits = $this->getRequest("public", "/stats/rate/second/limit");
-            return $limits;
-        }elseif ($timespan == "minute"){
-            $limits = $this->getRequest("public", "/stats/rate/minute/limit");
-            return $limits;
-        }elseif ($timespan == "all"){
-
-            $limits = (object) array();
-
-            $limits->minute = $this->getRequest("public", "/stats/rate/minute/limit");
-            $limits->second = $this->getRequest("public", "/stats/rate/second/limit");
-            $limits->hour = $this->getRequest("public", "/stats/rate/hour/limit");
-
-            return $limits;
-        }else {
-            $this->errorMessages[] = "avaiable options for timespan are hour or minute or second";
-            return false;
-        }
-    }
-
-    /**
-     * @return array returns array of strings with errors during the request
-     */
-    private function getErrorMessages() {
-        return $this->errorMessages;
-    }
-
-    /**
-     * @param string $type
-     * @param string $action
-     * @param array $options
-     * @return bool|mixed
-     * Description:
-     * will send request to api endpoint
+     * Creates request using guzzle
      */
     public function getRequest($type = "public", $action = "", $options = array()) {
         if ($action == "" ) {
@@ -162,9 +72,11 @@ class CryptocompareApi
                 echo "URI: " . $uri . "<br>";
             }
             $client = new \GuzzleHttp\Client(['verify' => false]);
+
             $res = $client->request('GET', $uri, array(
                 "query" => $options
             ));
+
             $this->statusCode = $res->getStatusCode();
             $this->header = $res->getHeader('content-type');
             $this->body = $res->getBody()->getContents();
@@ -184,14 +96,7 @@ class CryptocompareApi
      * @return string - "EUR,USD,BTC"
      */
     public function arrayToCommaSeperatedString ($input = array() ) {
-        $output = "";
-        foreach ($input as $i => $t ) {
-            if ($i == 0) {
-                $output = $t;
-            } else {
-                $output = $output . "," . $t;
-            }
-        }
+        $output = implode(",", $input);
         return $output;
     }
 

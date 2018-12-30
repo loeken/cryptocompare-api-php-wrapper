@@ -1,5 +1,15 @@
 # cryptocompare-api-php-wrapper
 
+
+# 0.) untested
+I just started rewriting it to match the documentation that can be found on
+
+https://min-api.cryptocompare.com/documentation
+
+
+There are some new endpoints available, some will get deprecated soon. I cleaned this up. Did not test yet.
+Added base for phpunit based unit tests.
+
 # 1.) Installation
 the easiest way to get started is to use composer to retrieve the files.
 
@@ -37,154 +47,16 @@ if your .php script file is in the same folder as the vendor folder, use the fol
 <?php
 require_once('vendor/autoload.php');
 ```
-### create object of class
-There are currently 3 available classes under the namespaces
-\Cryptocompare\CryptocompareApi, \Cryptocompare\Price and \Cryptocompare\Coin.
 
-The first can be used to get info about the api, the second one will display info about crypto prices/conversions.
-```php
-$cryptocompareApi = new Cryptocompare\CryptocompareApi();
-
-$cryptocomparePrice = new Cryptocompare\Price();
-
-$cryptocompareCoin = new Cryptocompare\Coin();
-
-$cryptocompareMarket = new Cryptocompare\Market();
-```
-
-## Cryptocompare\CryptocompareApi
-#### get all available calls
-```php
-$example1 = $cryptocompareApi->getAvailableCalls();
-```
-#### get rate limits for your IP
-```php
-$example2 = $cryptocompareApi->getRateLimits();
-```
-#### get mining contracts
-```php
-$example3 = $cryptocompareApi->getMiningContracts();
-```
-#### get mining equipment
-```php
-$example4 = $cryptocompareApi->getMiningEquipment();
-```
-#### get news providers
-```php
-$example5 = $cryptocompareApi->getNewsProviders();
-```
-#### get news
-```php
-$example6 = $cryptocompareApi->getNews("ALL_NEWS_FEEDS", false, "EN",false);
-```
-
-
-## Cryptocompare\Price
-#### convert a currency to an array of other currencies
-```php
-$example1 = $cryptocomparePrice->getSinglePrice("1","BTC",array("USD", "EUR"),"CCCAGG","false");
-```
-#### convert an array of currencies to another array of currencies
-```php
-$example2 = $cryptocomparePrice->getMultiPrice("1",array("BTC","ETH"),array("USD","EUR","ETH"),"CCCAGG","false");
-```
-#### convert an a currency to another array of currencies at a specific point in time
-```php
-$example3 = $cryptocomparePrice->getHistoricalPrice("1", "BTC", array("USD","EUR"), "1507469305", "CCCAGG", false);
-```
-#### convert an array of currencies to another array of currencies and get full trading information
-```php
-$example4 = $cryptocomparePrice->getMultiPriceFull("1", array("BTC","ETH"), array("USD","EUR"),"CCCAGG", false);
-```
-#### get trading information for a currency pair on specific markets as aggregated information
-```php
-$example5 = $cryptocomparePrice->getGenerateAvg("1", "BTC", "EUR", "Coinbase,Kraken",false);
-```
-#### get open/high/low/close at a specific point in time
-```php
-$example6 = $cryptocomparePrice->getDayAvg("1", "BTC", "EUR", "CCCAGG", "HourVWAP", 0, "1487116800", false);
-```
-#### get information required for streaming
-```php
-$example7 = $cryptocomparePrice->getSubsWatchlist("1", array("BTC", "ETH"), "EUR", "CCCAGG",false);
-```
-#### get all streamer subscription channels for the requested pair
-```php
-$example8 = $cryptocomparePrice->getSubs("1", "BTC", array("USD", "EUR"), "CCCAGG", false);
-```
-#### get all historical data for minute
-```php
-$example9 = $cryptocompareCoin->getHistoMinute(1,"BTC", "EUR","CCCAGG", false, 1, 1440, NULL);
-```
-#### get all historical data for hour
-```php
-$example10 = $cryptocompareCoin->getHistoHour(1,"BTC", "EUR","CCCAGG", false, 1, 1440, NULL);
-```
-#### get all historical data for day
-```php
-$example11 = $cryptocompareCoin->getHistoDay(1,"BTC", "EUR","CCCAGG", false, 1, 1440, NULL);
-```
-
-## Cryptocompare\Coin
-#### get all coins
-```php
-$example1 = $cryptocompareCoin->getList();
-```
-#### get top pairs
-```php
-$example2 = $cryptocompareCoin->getTopPairs("BTC", "EUR", 5, false);
-```
-#### get snapshot
-```php
-$example3 = $cryptocompareCoin->getSnapshot("BTC", "EUR");
-```
-#### get snapshot by coin id ( get id from ->getList() )
-```php
-$example4 = $cryptocompareCoin->getSnapshotFullById(1182);
-```
-#### get social stats by coin id ( get id from ->getList() )
-```php
-$example5 = $cryptocompareCoin->getSocialStats(1182);
-```
-
-## Cryptocompare\Market
-#### get top pairs
-```php
-$example1 = $cryptocompareMarket->getTopPairs("BTC", 5,false );
-
-```
-#### get top exchanges
-```php
-$example1 = $cryptocompareMarket->getTopExchanges("BTC", "EUR", 5, false);
-
-```
-#### get top volumes
-```php
-$example1 = $cryptocompareMarket->getTopVolumes("EUR", 20, false);
-
-```
-#### get all markets
-```php
-$example1 = $cryptocompareMarket->getList(false);
-
-```
 
 ### full working code example
 ```php
 <?php
 require_once('vendor/autoload.php');
 
-$cryptocompareApi = new Cryptocompare\CryptocompareApi();
-$example1 = $cryptocompareApi->getAvailableCalls();
-print_r($example1);
 
 $cryptocomparePrice = new Cryptocompare\Price();
-$example2 = $cryptocomparePrice->getSinglePrice("1","BTC","USD","CCCAGG","false");
-print_r($example2);
-
-
-$cryptocompareCoin = new Cryptocompare\Coin();
-$example3 = $cryptocompareCoin->getList();
-print_r($example3);
+$example1 = $cryptocomparePrice->getSingleSymbolPriceEndpoint("1","BTC","USD","CCCAGG","false");
+print_r($example1);
 
 ?>

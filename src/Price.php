@@ -11,16 +11,15 @@ namespace Cryptocompare;
 class Price extends CryptocompareApi
 {
     /**
-     * @param string $tryConversion - type of currency to convert from - default: BTC
-     * @param string $fsym - base currency to convert from
-     * @param array $tsyms - currencies to convert to
-     * @param string $e - the exchange
-     * @param string $extraParams - extra parameters
-     * @param bool $sign - server sided signing of request
+     * @param string $tryConversion
+     * @param string $fsym
+     * @param array $tsyms
+     * @param string $e
+     * @param bool $sign
      * @return mixed
-     * Description: Get data for a currency pair. It returns general block explorer information, aggregated data and individual data for each exchange available.
      */
-    public function getSinglePrice($tryConversion = true, $fsym = "BTC", $tsyms = array("USD", "EUR"), $e = "CCCAGG", $sign = false) {
+    public function getSingleSymbolPriceEndpoint($tryConversion = "true", $fsym = "BTC", $tsyms = array("USD", "EUR"), $e = "CCCAGG", $sign = false)
+    {
         $extraParams = $this->appplicationName;;
         $params = array(
             "tryConversion" => $tryConversion,
@@ -35,15 +34,15 @@ class Price extends CryptocompareApi
     }
 
     /**
-     * @param string $tryConversion - type of currency to convert from - default: BTC
-     * @param array $fsym - base currencies to convert from
-     * @param array $tsyms - currencies to convert to
-     * @param string $e - the exchange
-     * @param string $extraParams - extra parameters
-     * @param bool $sign - server sided signing of request
+     * @param string $tryConversion
+     * @param array $fsyms
+     * @param array $tsyms
+     * @param string $e
+     * @param bool $sign
      * @return mixed
      */
-    public function getMultiPrice($tryConversion = true, $fsyms = array("BTC","ETH"), $tsyms = array("USD","EUR"), $e = "CCCAGG", $sign = false) {
+    public function getMultipleSymbolsPriceEndpoint($tryConversion = "true", $fsyms = array("BTC", "ETH"), $tsyms = array("USD", "EUR"), $e = "CCCAGG", $sign = false)
+    {
         $_tsyms = $this->arrayToCommaSeperatedString($tsyms);
         $_fsyms = $this->arrayToCommaSeperatedString($fsyms);
         $extraParams = $this->appplicationName;;
@@ -60,46 +59,17 @@ class Price extends CryptocompareApi
         return $r;
     }
 
+
     /**
-     * @param string $tryConversion - type of currency to convert from - default: BTC
-     * @param array $fsym - base currencies to convert from
-     * @param array $tsyms - currencies to convert to
-     * @param string $e - the exchange
-     * @param bool $sign - server sided signing of request
+     * @param string $tryConversion
+     * @param array $fsyms
+     * @param array $tsyms
+     * @param string $e
+     * @param bool $sign
      * @return mixed
      */
-    public function getHistoricalPrice($tryConversion = true, $fsym = "BTC", $tsyms = array("USD","EUR"), $ts = "1507469305", $e = "CCCAGG", $sign = false) {
-        $_tsyms = "";
-        $extraParams = $this->appplicationName;
-        foreach ($tsyms as $i => $tsym ) {
-            if ($i == 0 ) {
-                $_tsyms = $tsym;
-            } else {
-                $_tsyms = $_tsyms . "," . $tsym;
-            }
-        }
-        $params = array(
-            "tryConversion" => $tryConversion,
-            "fsym" => $fsym,
-            "tsyms" => $_tsyms,
-            "e" => $e,
-            "extraParams" => $extraParams,
-            "sign" => $sign,
-            "ts" => $ts,
-        );
-        $r = $this->getRequest("public", "/data/pricehistorical", $params);
-        return $r;
-    }
-    /**
-     * @param string $tryConversion - type of currency to convert from - default: BTC
-     * @param array $fsyms - base currencies to convert from
-     * @param array $tsyms - currencies to convert to
-     * @param string $e - the exchange
-     * @param string $extraParams - extra parameters
-     * @param bool $sign - server sided signing of request
-     * @return mixed
-     */
-    public function getMultiPriceFull($tryConversion = true, $fsyms = array("BTC","ETH"), $tsyms = array("USD","EUR"), $e = "CCCAGG", $sign = false) {
+    public function getMultipleSymbolsFullPriceEndpoint($tryConversion = "true", $fsyms = array("BTC", "ETH"), $tsyms = array("USD", "EUR"), $e = "CCCAGG", $sign = false)
+    {
         $_tsyms = $this->arrayToCommaSeperatedString($tsyms);
         $_fsyms = $this->arrayToCommaSeperatedString($fsyms);
         $extraParams = $this->appplicationName;;
@@ -117,15 +87,15 @@ class Price extends CryptocompareApi
     }
 
     /**
-     * @param string $tryConversion - type of currency to convert from - default: BTC
-     * @param string $fsym - base currency to convert from
-     * @param string $tsym - currency to convert to
-     * @param string $e - the exchange
-     * @param string $extraParams - extra parameters
-     * @param bool $sign - server sided signing of request
+     * @param string $tryConversion
+     * @param string $fsym
+     * @param string $tsym
+     * @param string $e
+     * @param bool $sign
      * @return mixed
      */
-    public function getGenerateAvg($tryConversion = true, $fsym = "BTC", $tsym = "EUR", $e = "Coinbase,Kraken", $sign = false) {
+    public function getGenerateAvg($tryConversion = "true", $fsym = "BTC", $tsym = "EUR", $e = "Coinbase,Kraken", $sign = false)
+    {
 
         $extraParams = $this->appplicationName;;
 
@@ -142,43 +112,15 @@ class Price extends CryptocompareApi
     }
 
     /**
-     * @param string $tryConversion - type of currency to convert from - default: BTC
-     * @param string $fsym - base currency to convert from
-     * @param string $tsym - currency to convert to
-     * @param string $e - the exchange
-     * @param string $extraParams - extra parameters
-     * @param bool $sign - server sided signing of request
+     * @param string $tryConversion
+     * @param array $fsyms
+     * @param string $tsym
+     * @param string $e
+     * @param bool $sign
      * @return mixed
      */
-    public function getDayAvg($tryConversion = true, $fsym = "BTC", $tsym = "EUR", $e = "CCCAGG", $avgType = "HourVWAP", $UTCHourDiff = 0, $toTs = "1487116800", $sign = false) {
-
-        $extraParams = $this->appplicationName;;
-
-        $params = array(
-            "tryConversion" => $tryConversion,
-            "avgType" => $avgType,
-            "UTCHourDiff" => $UTCHourDiff,
-            "toTs" => $toTs,
-            "fsym" => $fsym,
-            "tsym" => $tsym,
-            "e" => $e,
-            "extraParams" => $extraParams,
-            "sign" => $sign
-        );
-        $r = $this->getRequest("public", "/data/dayAvg", $params);
-        return $r;
-    }
-
-    /**
-     * @param string $tryConversion - type of currency to convert from - default: BTC
-     * @param array $fsyms - base currencies to convert from
-     * @param string $tsym - currency to convert to
-     * @param string $e - the exchange
-     * @param string $extraParams - extra parameters
-     * @param bool $sign - server sided signing of request
-     * @return mixed
-     */
-    public function getSubsWatchlist($tryConversion = true, $fsyms = array("BTC", "ETH"), $tsym = "EUR", $e = "CCCAGG", $sign = false) {
+    public function getSubsWatchlist($tryConversion = "true", $fsyms = array("BTC", "ETH"), $tsym = "EUR", $e = "CCCAGG", $sign = false)
+    {
 
         $_fsyms = $this->arrayToCommaSeperatedString($fsyms);
         $extraParams = $this->appplicationName;;
@@ -194,16 +136,17 @@ class Price extends CryptocompareApi
         $r = $this->getRequest("public", "/data/subsWatchlist", $params);
         return $r;
     }
+
     /**
-     * @param string $tryConversion - type of currency to convert from - default: BTC
-     * @param string $fsym - base currency to convert from
-     * @param array $tsyms - currencies to convert to
-     * @param string $e - the exchange
-     * @param string $extraParams - extra parameters
-     * @param bool $sign - server sided signing of request
+     * @param string $tryConversion
+     * @param string $fsym
+     * @param array $tsyms
+     * @param string $e
+     * @param bool $sign
      * @return mixed
      */
-    public function getSubs($tryConversion = true, $fsym = "BTC", $tsyms = array("USD", "EUR"), $e = "CCCAGG", $sign = false) {
+    public function getSubs($tryConversion = "true", $fsym = "BTC", $tsyms = array("USD", "EUR"), $e = "CCCAGG", $sign = false)
+    {
 
         $_tsyms = $this->arrayToCommaSeperatedString($tsyms);
         $extraParams = $this->appplicationName;;
@@ -217,92 +160,6 @@ class Price extends CryptocompareApi
             "sign" => $sign
         );
         $r = $this->getRequest("public", "/data/subs", $params);
-        return $r;
-    }
-    /**
-     * @param string $tryConversion
-     * @param string $fsym
-     * @param string $tsym
-     * @param string $e
-     * @param bool $sign
-     * @param int $aggregate
-     * @param int $limit
-     * @param null $toTs
-     * @return bool|mixed
-     */
-    public function getHistoMinute($tryConversion = true, $fsym = "BTC", $tsym = "EUR", $e = "CCCAGG", $sign = false, $aggregate = 1, $limit = 1440, $toTs = NULL) {
-        $extraParams = $this->appplicationName;
-
-        $params = array(
-            "tryConversion" => $tryConversion,
-            "fsym" => $fsym,
-            "tsym" => $tsym,
-            "e" => $e,
-            "extraParams" => $extraParams,
-            "sign" => $sign,
-            "aggregate" => $aggregate,
-            "limit" => $limit,
-            "toTs" => $toTs,
-        );
-        $r = $this->getRequest("public", "/data/histominute", $params);
-        return $r;
-    }
-
-    /**
-     * @param string $tryConversion
-     * @param string $fsym
-     * @param string $tsym
-     * @param string $e
-     * @param bool $sign
-     * @param int $aggregate
-     * @param int $limit
-     * @param null $toTs
-     * @return bool|mixed
-     */
-    public function getHistoHour($tryConversion = true, $fsym = "BTC", $tsym = "EUR", $e = "CCCAGG", $sign = false, $aggregate = 1, $limit = 1440, $toTs = NULL) {
-        $extraParams = $this->appplicationName;
-
-        $params = array(
-            "tryConversion" => $tryConversion,
-            "fsym" => $fsym,
-            "tsym" => $tsym,
-            "e" => $e,
-            "extraParams" => $extraParams,
-            "sign" => $sign,
-            "aggregate" => $aggregate,
-            "limit" => $limit,
-            "toTs" => $toTs,
-        );
-        $r = $this->getRequest("public", "/data/histohour", $params);
-        return $r;
-    }
-
-    /**
-     * @param string $tryConversion
-     * @param string $fsym
-     * @param string $tsym
-     * @param string $e
-     * @param bool $sign
-     * @param int $aggregate
-     * @param int $limit
-     * @param null $toTs
-     * @return bool|mixed
-     */
-    public function getHistoDay($tryConversion = true, $fsym = "BTC", $tsym = "EUR", $e = "CCCAGG", $sign = false, $aggregate = 1, $limit = 1440, $toTs = NULL) {
-        $extraParams = $this->appplicationName;
-
-        $params = array(
-            "tryConversion" => $tryConversion,
-            "fsym" => $fsym,
-            "tsym" => $tsym,
-            "e" => $e,
-            "extraParams" => $extraParams,
-            "sign" => $sign,
-            "aggregate" => $aggregate,
-            "limit" => $limit,
-            "toTs" => $toTs,
-        );
-        $r = $this->getRequest("public", "/data/histoday", $params);
         return $r;
     }
 }

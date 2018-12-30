@@ -3,7 +3,8 @@
   "description": "Php wrapper class based on guzzle to query the cryptocompare.com api",
   "type": "library",
   "require": {
-    "guzzlehttp/guzzle": "6.3.*"
+    "guzzlehttp/guzzle": "6.3.*",
+    "phpunit/phpunit": "^7"
   },
   "require-dev": {
     "guzzlehttp/guzzle": "6.3.*"
@@ -17,6 +18,9 @@
   "autoload": {
     "psr-4": {
       "Cryptocompare\\": "src/"
-    }
+    },
+    "classmap": [
+      "src/"
+    ]
   }
 }
