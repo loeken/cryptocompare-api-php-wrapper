@@ -79,7 +79,10 @@ class CryptocompareApi
             $client = new \GuzzleHttp\Client(['verify' => false]);
 
             $res = $client->request('GET', $uri, array(
-                "query" => $options
+                "query" => $options,
+                'headers' => array(
+                    'authorization' => "Apikey ".$this->getApiKey()
+                )
             ));
 
             $this->statusCode = $res->getStatusCode();
