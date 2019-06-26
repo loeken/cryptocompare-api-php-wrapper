@@ -60,7 +60,7 @@ $example1 = $cryptocomparePrice->getSingleSymbolPriceEndpoint("true","BTC","USD"
 print_r($example1);
 
 ?>
-
+```
 
 
 ### apiKey
@@ -76,3 +76,4 @@ $example1 = $cryptocomparePrice->getSingleSymbolPriceEndpoint("true","BTC","USD"
 print_r($example1);
 
 ?>
+```
