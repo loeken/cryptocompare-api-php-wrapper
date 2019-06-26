@@ -60,3 +60,19 @@ $example1 = $cryptocomparePrice->getSingleSymbolPriceEndpoint("true","BTC","USD"
 print_r($example1);
 
 ?>
+
+
+
+### apiKey
+thanks to a user submission we now have support for apiKeys you can simply set your apiKey after creating your object
+```php
+<?php
+require_once('vendor/autoload.php');
+
+
+$cryptocomparePrice = new Cryptocompare\Price();
+$cryptocomparePrice->setApiKey("yourapikeyhere");
+$example1 = $cryptocomparePrice->getSingleSymbolPriceEndpoint("true","BTC","USD","CCCAGG","false");
+print_r($example1);
+
+?>
