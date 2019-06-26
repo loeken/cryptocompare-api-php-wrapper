@@ -35,6 +35,11 @@ class CryptocompareApi
     public $privateEndpoint ="https://www.cryptocompare.com/api/data";
 
     /**
+     * @var string apiKey for your application from https://min-api.cryptocompare.com
+     */
+    private $apiKey;
+
+    /**
      * @var array contains strings with errors
      */
     public $errorMessages = array();
@@ -74,7 +79,10 @@ class CryptocompareApi
             $client = new \GuzzleHttp\Client(['verify' => false]);
 
             $res = $client->request('GET', $uri, array(
-                "query" => $options
+                "query" => $options,
+                'headers' => array(
+                    'authorization' => "Apikey ".$this->getApiKey()
+                )
             ));
 
             $this->statusCode = $res->getStatusCode();
@@ -101,11 +109,27 @@ class CryptocompareApi
     }
 
     /**
+     * @return string
+     */
+    public function getApiKey() {
+        return $this->apiKey;
+    }
+
+    /**
+     * @param string $apiKey
+     */
+    public function setApiKey($apiKey) {
+        $this->apiKey = $apiKey;
+    }
+
+    /**
      * CryptocompareApi constructor.
+     * @param string $apiKey
      * @param bool $debug
      */
-    function __construct($debug = false)
+    function __construct($apiKey,$debug = false)
     {
+        $this->setApiKey($apiKey);
         $this->setDebug($debug);
     }
 
@@ -115,4 +139,5 @@ class CryptocompareApi
     public function setDebug($debug) {
         $this->debug = $debug;
     }
+
 }
