@@ -22,7 +22,7 @@ class News extends CryptocompareApi
      * @param int $limit
      * @return mixed
      */
-    public function getDataExchangeHistohour($feeds = "cryptocompare,cryptoglobe", $categories = "Blockchain,ICO", $excludeCategories  = "", $lTs = "1507469305", $lang = "EN", $sortOrder = "latest", $sign= false, $limit = 1440) {
+    public function getDataExchangeHistohour($feeds = "cryptocompare,cryptoglobe", $categories = "Blockchain,ICO", $excludeCategories  = "NO_EXCLUDED_NEWS_CATEGORIES", $lTs = "1507469305", $lang = "EN", $sortOrder = "latest", $sign= false, $limit = 1440) {
         $extraParams = $this->appplicationName;
 
         $params = array(
@@ -36,7 +36,7 @@ class News extends CryptocompareApi
             "sortOrder" => $sortOrder,
             "sign" => $sign,
         );
-        $r = $this->getRequest("public", "/data/v2/news", $params);
+        $r = $this->getRequest("public", "/data/v2/news/", $params);
         return $r;
     }
 
