@@ -27,7 +27,7 @@ class Toplists extends CryptocompareApi
             "sign" => $sign,
             "tsym" => $tsym,
         );
-        $r = $this->getRequest("public", "/data/top/totalvolfull", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/totalvolfull", $params);
         return $r;
     }
 
@@ -48,7 +48,7 @@ class Toplists extends CryptocompareApi
             "sign" => $sign,
             "tsym" => $tsym,
         );
-        $r = $this->getRequest("public", "/data/top/mktcapfull", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/mktcapfull", $params);
         return $r;
     }
 
@@ -70,7 +70,7 @@ class Toplists extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign,
         );
-        $r = $this->getRequest("public", "/data/top/exchanges", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/exchanges", $params);
         return $r;
     }
 
@@ -92,7 +92,7 @@ class Toplists extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/top/exchanges/full", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/exchanges/full", $params);
         return $r;
     }
 
@@ -113,7 +113,7 @@ class Toplists extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/top/volumes", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/volumes", $params);
         return $r;
     }
 
@@ -134,8 +134,7 @@ class Toplists extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/top/volumes", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/volumes", $params);
         return $r;
     }
-
 }

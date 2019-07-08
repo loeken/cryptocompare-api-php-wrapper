@@ -22,7 +22,7 @@ class Market extends CryptocompareApi
             "limit" => $limit,
             "sign" => $sign,
         );
-        $pairs = $this->getRequest("public","/data/top/pairs", $params);
+        $pairs = $this->getRequest(CryptocompareApi::PUBLIC,"/data/top/pairs", $params);
         return $pairs;
     }
 
@@ -44,7 +44,7 @@ class Market extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/top/exchanges", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/exchanges", $params);
         return $r;
     }
 
@@ -64,7 +64,7 @@ class Market extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/top/volumes", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/volumes", $params);
         return $r;
     }
 
@@ -80,9 +80,7 @@ class Market extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/all/exchanges", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/all/exchanges", $params);
         return $r;
     }
-
-
 }

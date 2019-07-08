@@ -7,8 +7,18 @@
  */
 namespace Cryptocompare;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException as GuzzleExceptionAlias;
+
 class CryptocompareApi
 {
+
+    const PUBLIC = 'public';
+    const PRIVATE = 'private';
+
+    const PUBLIC_ENDPOINT = 'https://min-api.cryptocompare.com';
+    const PRIVATE_ENDPOINT = 'https://www.cryptocompare.com/api/data';
+
     // the following variables should be set by you
 
     /**
@@ -25,78 +35,61 @@ class CryptocompareApi
     // do not edit bellow unless you know what you are doing
 
     /**
-     * @var string publicEndpoint applies to all requests that do not need a session key to work
-     */
-    public $publicEndpoint = "https://min-api.cryptocompare.com";
-
-    /**
-     * @var string privateEndpoint applies to all requests that do need a session key to work
-     */
-    public $privateEndpoint ="https://www.cryptocompare.com/api/data";
-
-    /**
      * @var string apiKey for your application from https://min-api.cryptocompare.com
      */
     private $apiKey;
 
     /**
-     * @var array contains strings with errors
+     * @var
      */
-    public $errorMessages = array();
+    protected $httpClient;
 
     /**
-     * @var string - http status code from server
+     * CryptocompareApi constructor.
+     *
+     * @param string $apiKey
+     * @param bool $debug
      */
-    public $statusCode = "unset";
+    function __construct($apiKey,$debug = false)
+    {
+        $this->setApiKey($apiKey);
+        $this->setDebug($debug);
+
+        $this->httpClient = new Client(['verify' => false]);
+    }
 
     /**
-     * @var string - http response body
+     * @param string $type
+     * @param string $action
+     * @param array $options
+     *
+     * @return mixed
+     * @throws GuzzleExceptionAlias
+     * @throws InvalidRequest
      */
-    public $body = "";
+    public function getRequest(string $type, string $action, $options = [])
+    {
+        $apiEndpoint = $this->getApiEndpoint($type, $action);
 
-    /**
-     * Creates request using guzzle
-     */
-    public function getRequest($type = "public", $action = "", $options = array()) {
-        if ($action == "" ) {
-            $this->errorMessages[] = "no action submitted";
-            return false;
+        if ($apiEndpoint === null) {
+            throw new \Exception('Invalid type');
         }
-        if ($type == "public" ) {
-            $uri = $this->publicEndpoint . $action;
-        }
-        elseif ($type == "private" ) {
-            $uri = $this->privateEndpoint . $action;
-        }
-        else {
-            $this->errorMessages[] = "invalid type specified";
-            return false;
-        }
-        try {
-            if ($this->debug == true ) {
-                echo "URI: " . $uri . "<br>";
-            }
-            $client = new \GuzzleHttp\Client(['verify' => false]);
 
-            $res = $client->request('GET', $uri, array(
-                "query" => $options,
-                'headers' => array(
-                    'authorization' => "Apikey ".$this->getApiKey()
-                )
-            ));
+        $result = $this->httpClient->request('GET', $apiEndpoint, [
+            "query" => $options,
+            'headers' => [
+                'authorization' => 'Apikey ' . $this->getApiKey()
+            ]
+        ]);
 
-            $this->statusCode = $res->getStatusCode();
-            $this->header = $res->getHeader('content-type');
-            $this->body = $res->getBody()->getContents();
-            return json_decode($this->body);
+        $statusCode = $result->getStatusCode();
+
+        if ($statusCode !== 200) {
+            throw new InvalidRequest('Request is invalid', $statusCode);
         }
-        catch (\Exception $e) {
-            if ($this->debug == true ) {
-                echo "HTTP response code:" . $this->statusCode;
-                print_r(json_decode($this->body));
-                die();
-            }
-        }
+
+        $body = $result->getBody()->getContents();
+        return json_decode($body);
     }
 
     /**
@@ -123,21 +116,40 @@ class CryptocompareApi
     }
 
     /**
-     * CryptocompareApi constructor.
-     * @param string $apiKey
-     * @param bool $debug
-     */
-    function __construct($apiKey,$debug = false)
-    {
-        $this->setApiKey($apiKey);
-        $this->setDebug($debug);
-    }
-
-    /**
      * @param $debug
      */
     public function setDebug($debug) {
         $this->debug = $debug;
     }
 
+    /**
+     * Generates the endpoint uri
+     *
+     * @param string $type
+     * @param string $action
+     *
+     * @return string|null
+     */
+    protected function getApiEndpoint(string $type, string $action)
+    {
+        if ($type === self::PUBLIC) {
+            return self::PUBLIC_ENDPOINT . $action;
+        } else if ($type === self::PRIVATE) {
+            return self::PRIVATE_ENDPOINT . $action;
+        }
+
+        return null;
+    }
+
+    /**
+     * logs the message if debug is enabled
+     *
+     * @param string $message
+     */
+    protected function log(string $message): void
+    {
+        if ($this->debug === true ) {
+            echo $message;
+        }
+    }
 }
