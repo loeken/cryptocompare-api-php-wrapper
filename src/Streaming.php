@@ -25,7 +25,7 @@ class Streaming extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/top/totalvol", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/totalvol", $params);
         return $r;
     }
 }

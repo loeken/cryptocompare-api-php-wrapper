@@ -39,7 +39,7 @@ class Historical extends CryptocompareApi
             "limit" => $limit,
             "toTs" => $toTs,
         );
-        $r = $this->getRequest("public", "/data/histoday", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/histoday", $params);
         return $r;
     }
 
@@ -68,7 +68,7 @@ class Historical extends CryptocompareApi
             "limit" => $limit,
             "toTs" => $toTs,
         );
-        $r = $this->getRequest("public", "/data/histohour", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/histohour", $params);
         return $r;
     }
 
@@ -97,7 +97,7 @@ class Historical extends CryptocompareApi
             "limit" => $limit,
             "toTs" => $toTs,
         );
-        $r = $this->getRequest("public", "/data/histominute", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/histominute", $params);
         return $r;
     }
 
@@ -129,7 +129,7 @@ class Historical extends CryptocompareApi
             "sign" => $sign,
             "ts" => $ts,
         );
-        $r = $this->getRequest("public", "/data/pricehistorical", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/pricehistorical", $params);
         return $r;
     }
 
@@ -159,7 +159,7 @@ class Historical extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/dayAvg", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/dayAvg", $params);
         return $r;
     }
 
@@ -186,7 +186,7 @@ class Historical extends CryptocompareApi
             "limit" => $limit,
             "toTs" => $toTs,
         );
-        $r = $this->getRequest("public", "/data/exchange/histoday", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/exchange/histoday", $params);
         return $r;
     }
 
@@ -213,7 +213,7 @@ class Historical extends CryptocompareApi
             "limit" => $limit,
             "toTs" => $toTs,
         );
-        $r = $this->getRequest("public", "/data/exchange/histohour", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/exchange/histohour", $params);
         return $r;
     }
 }

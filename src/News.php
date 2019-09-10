@@ -36,7 +36,7 @@ class News extends CryptocompareApi
             "sortOrder" => $sortOrder,
             "sign" => $sign,
         );
-        $r = $this->getRequest("public", "/data/v2/news/", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/v2/news/", $params);
         return $r;
     }
 
@@ -50,7 +50,7 @@ class News extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign,
         );
-        $r = $this->getRequest("public", "/data/news/feeds", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/news/feeds", $params);
         return $r;
     }
 
@@ -64,7 +64,7 @@ class News extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign,
         );
-        $r = $this->getRequest("public", "/data/news/categories", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/news/categories", $params);
         return $r;
     }
 
@@ -78,9 +78,7 @@ class News extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign,
         );
-        $r = $this->getRequest("public", "/data/news/feedsandcategories", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/news/feedsandcategories", $params);
         return $r;
     }
-
-
 }

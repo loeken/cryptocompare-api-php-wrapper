@@ -29,7 +29,7 @@ class Price extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/price", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/price", $params);
         return $r;
     }
 
@@ -55,7 +55,7 @@ class Price extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/pricemulti", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/pricemulti", $params);
         return $r;
     }
 
@@ -82,7 +82,7 @@ class Price extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/pricemultifull", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/pricemultifull", $params);
         return $r;
     }
 
@@ -107,7 +107,7 @@ class Price extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/generateAvg", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/generateAvg", $params);
         return $r;
     }
 
@@ -133,7 +133,7 @@ class Price extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/subsWatchlist", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/subsWatchlist", $params);
         return $r;
     }
 
@@ -159,7 +159,7 @@ class Price extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/subs", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/subs", $params);
         return $r;
     }
 }

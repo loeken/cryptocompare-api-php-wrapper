@@ -15,7 +15,7 @@ class Other extends CryptocompareApi {
      */
     public function getRateLimitEndpoint() {
 
-        $limits = $this->getRequest("public", "/stats/rate/limit");
+        $limits = $this->getRequest(CryptocompareApi::PUBLIC, "/stats/rate/limit");
         return $limits;
     }
 
@@ -29,7 +29,7 @@ class Other extends CryptocompareApi {
         $params = array(
             "sign" => $sign,
         );
-        $exchanges = $this->getRequest("public", "/data/v2/all/exchanges", $params);
+        $exchanges = $this->getRequest(CryptocompareApi::PUBLIC, "/data/v2/all/exchanges", $params);
         return $exchanges;
     }
 
@@ -42,7 +42,7 @@ class Other extends CryptocompareApi {
         $params = array(
             "sign" => $sign,
         );
-        $exchanges = $this->getRequest("public", "/data/all/includedexchanges", $params);
+        $exchanges = $this->getRequest(CryptocompareApi::PUBLIC, "/data/all/includedexchanges", $params);
         return $exchanges;
     }
 
@@ -56,7 +56,7 @@ class Other extends CryptocompareApi {
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/all/coinlist", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/all/coinlist", $params);
         return $r;
     }
 
@@ -70,7 +70,7 @@ class Other extends CryptocompareApi {
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/exchanges/general", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/exchanges/general", $params);
         return $r;
     }
 
@@ -84,7 +84,7 @@ class Other extends CryptocompareApi {
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/exchanges/general", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/exchanges/general", $params);
         return $r;
     }
 
@@ -98,7 +98,7 @@ class Other extends CryptocompareApi {
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/cards/general", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/cards/general", $params);
         return $r;
     }
 
@@ -112,7 +112,7 @@ class Other extends CryptocompareApi {
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/mining/contracts/general", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/mining/contracts/general", $params);
         return $r;
     }
 
@@ -126,7 +126,7 @@ class Other extends CryptocompareApi {
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/mining/equipment/general", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/mining/equipment/general", $params);
         return $r;
     }
 
@@ -140,7 +140,7 @@ class Other extends CryptocompareApi {
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/mining/pools/general", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/mining/pools/general", $params);
         return $r;
     }
 }

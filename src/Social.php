@@ -32,7 +32,7 @@ class Social extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/social/histo/day", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/social/histo/day", $params);
         return $r;
     }
 
@@ -57,8 +57,7 @@ class Social extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest("public", "/data/social/histo/day", $params);
+        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/social/histo/day", $params);
         return $r;
     }
-
 }
