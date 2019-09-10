@@ -13,8 +13,8 @@ use GuzzleHttp\Exception\GuzzleException as GuzzleExceptionAlias;
 class CryptocompareApi
 {
 
-    const PUBLIC = 'public';
-    const PRIVATE = 'private';
+    const PUB = 'public';
+    const PRIV = 'private';
 
     const PUBLIC_ENDPOINT = 'https://min-api.cryptocompare.com';
     const PRIVATE_ENDPOINT = 'https://www.cryptocompare.com/api/data';
@@ -67,7 +67,7 @@ class CryptocompareApi
      * @throws GuzzleExceptionAlias
      * @throws InvalidRequest
      */
-    public function getRequest(string $type, string $action, $options = [])
+    public function getRequest($type, $action, $options = [])
     {
         $apiEndpoint = $this->getApiEndpoint($type, $action);
 
@@ -130,11 +130,11 @@ class CryptocompareApi
      *
      * @return string|null
      */
-    protected function getApiEndpoint(string $type, string $action)
+    protected function getApiEndpoint($type, $action)
     {
-        if ($type === self::PUBLIC) {
+        if ($type === self::PUB) {
             return self::PUBLIC_ENDPOINT . $action;
-        } else if ($type === self::PRIVATE) {
+        } else if ($type === self::PRIV) {
             return self::PRIVATE_ENDPOINT . $action;
         }
 
@@ -146,7 +146,7 @@ class CryptocompareApi
      *
      * @param string $message
      */
-    protected function log(string $message): void
+    protected function log($message)
     {
         if ($this->debug === true ) {
             echo $message;

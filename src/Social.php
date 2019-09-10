@@ -19,6 +19,8 @@ class Social extends CryptocompareApi
      * @param bool $sign
      * @param int $limit
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getHistoricalDaySocialStats($coinId = false, $aggregate = 0, $aggregatePredictableTimePeriods = true, $toTs = "1507469305", $sign = false, $limit = 1440) {
         $extraParams = $this->appplicationName;
@@ -32,7 +34,7 @@ class Social extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/social/histo/day", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/social/histo/day", $params);
         return $r;
     }
 
@@ -44,6 +46,8 @@ class Social extends CryptocompareApi
      * @param bool $sign
      * @param int $limit
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getHistoricalHourSocialStats($coinId = false, $aggregate = 0, $aggregatePredictableTimePeriods = true, $toTs = "1507469305", $sign = false, $limit = 1440) {
         $extraParams = $this->appplicationName;
@@ -57,7 +61,7 @@ class Social extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/social/histo/day", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/social/histo/day", $params);
         return $r;
     }
 }

@@ -21,6 +21,8 @@ class News extends CryptocompareApi
      * @param bool $sign
      * @param int $limit
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getDataExchangeHistohour($feeds = "cryptocompare,cryptoglobe", $categories = "Blockchain,ICO", $excludeCategories  = "NO_EXCLUDED_NEWS_CATEGORIES", $lTs = "1507469305", $lang = "EN", $sortOrder = "latest", $sign= false, $limit = 1440) {
         $extraParams = $this->appplicationName;
@@ -36,13 +38,15 @@ class News extends CryptocompareApi
             "sortOrder" => $sortOrder,
             "sign" => $sign,
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/v2/news/", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/v2/news/", $params);
         return $r;
     }
 
     /**
      * @param bool $sign
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getListNewsFeedsEndpoint( $sign= false ) {
         $extraParams = $this->appplicationName;
@@ -50,13 +54,15 @@ class News extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign,
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/news/feeds", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/news/feeds", $params);
         return $r;
     }
 
     /**
      * @param bool $sign
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getNewsArticleCategoriesEndpoint( $sign= false ) {
         $extraParams = $this->appplicationName;
@@ -64,13 +70,15 @@ class News extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign,
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/news/categories", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/news/categories", $params);
         return $r;
     }
 
     /**
      * @param bool $sign
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getNewsFeedAndCategoriesEndpoint( $sign= false ) {
         $extraParams = $this->appplicationName;
@@ -78,7 +86,7 @@ class News extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign,
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/news/feedsandcategories", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/news/feedsandcategories", $params);
         return $r;
     }
 }

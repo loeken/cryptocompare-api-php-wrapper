@@ -18,6 +18,8 @@ class Streaming extends CryptocompareApi
      * @param int $page
      * @param string $sign
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getAllMiningPoolsStaticInfoEndpoint($tsym = "USD", $limit = 10, $page = 0, $sign = "false") {
         $extraParams = $this->appplicationName;
@@ -25,7 +27,7 @@ class Streaming extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/totalvol", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/top/totalvol", $params);
         return $r;
     }
 }

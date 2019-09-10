@@ -17,6 +17,8 @@ class Toplists extends CryptocompareApi
      * @param bool $sign
      * @param int $limit
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getDataExchangeHistohour($tsym = "EUR", $page = 0, $sign = false, $limit = 1440) {
         $extraParams = $this->appplicationName;
@@ -27,7 +29,7 @@ class Toplists extends CryptocompareApi
             "sign" => $sign,
             "tsym" => $tsym,
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/totalvolfull", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/top/totalvolfull", $params);
         return $r;
     }
 
@@ -37,6 +39,8 @@ class Toplists extends CryptocompareApi
      * @param bool $sign
      * @param int $limit
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
 
      public function getTopTotalMktCapEndpointFull($tsym = "EUR", $page = 0, $sign = false, $limit = 1440) {
@@ -48,7 +52,7 @@ class Toplists extends CryptocompareApi
             "sign" => $sign,
             "tsym" => $tsym,
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/mktcapfull", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/top/mktcapfull", $params);
         return $r;
     }
 
@@ -59,6 +63,8 @@ class Toplists extends CryptocompareApi
      * @param bool $sign
      * @param int $limit
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getTopExchangesEndpoint($fsym = "BTC", $tsym = "EUR", $page = 0, $sign = false, $limit = 1440) {
         $extraParams = $this->appplicationName;
@@ -70,7 +76,7 @@ class Toplists extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign,
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/exchanges", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/top/exchanges", $params);
         return $r;
     }
 
@@ -81,6 +87,8 @@ class Toplists extends CryptocompareApi
      * @param bool $sign
      * @param int $limit
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getTopExchangesFullEndpoint($fsym = "BTC", $tsym = "EUR", $page = 0, $sign = false, $limit = 1440) {
         $extraParams = $this->appplicationName;
@@ -92,7 +100,7 @@ class Toplists extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/exchanges/full", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/top/exchanges/full", $params);
         return $r;
     }
 
@@ -102,6 +110,8 @@ class Toplists extends CryptocompareApi
      * @param bool $sign
      * @param int $limit
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getTopExchangesVolumes($fsym = "BTC", $page = 0, $sign = false, $limit = 1440) {
         $extraParams = $this->appplicationName;
@@ -113,7 +123,7 @@ class Toplists extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/volumes", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/top/volumes", $params);
         return $r;
     }
 
@@ -123,6 +133,8 @@ class Toplists extends CryptocompareApi
      * @param bool $sign
      * @param int $limit
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getTopPairsEndpoint($fsym = "BTC", $page = 0, $sign = false, $limit = 1440) {
         $extraParams = $this->appplicationName;
@@ -134,7 +146,7 @@ class Toplists extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/volumes", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/top/volumes", $params);
         return $r;
     }
 }

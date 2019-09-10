@@ -17,6 +17,8 @@ class Price extends CryptocompareApi
      * @param string $e
      * @param bool $sign
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getSingleSymbolPriceEndpoint($tryConversion = "true", $fsym = "BTC", $tsyms = array("USD", "EUR"), $e = "CCCAGG", $sign = false)
     {
@@ -29,7 +31,7 @@ class Price extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/price", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/price", $params);
         return $r;
     }
 
@@ -40,6 +42,8 @@ class Price extends CryptocompareApi
      * @param string $e
      * @param bool $sign
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getMultipleSymbolsPriceEndpoint($tryConversion = "true", $fsyms = array("BTC", "ETH"), $tsyms = array("USD", "EUR"), $e = "CCCAGG", $sign = false)
     {
@@ -55,7 +59,7 @@ class Price extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/pricemulti", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/pricemulti", $params);
         return $r;
     }
 
@@ -67,6 +71,8 @@ class Price extends CryptocompareApi
      * @param string $e
      * @param bool $sign
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getMultipleSymbolsFullPriceEndpoint($tryConversion = "true", $fsyms = array("BTC", "ETH"), $tsyms = array("USD", "EUR"), $e = "CCCAGG", $sign = false)
     {
@@ -82,7 +88,7 @@ class Price extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/pricemultifull", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/pricemultifull", $params);
         return $r;
     }
 
@@ -93,6 +99,8 @@ class Price extends CryptocompareApi
      * @param string $e
      * @param bool $sign
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getGenerateAvg($tryConversion = "true", $fsym = "BTC", $tsym = "EUR", $e = "Coinbase,Kraken", $sign = false)
     {
@@ -107,7 +115,7 @@ class Price extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/generateAvg", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/generateAvg", $params);
         return $r;
     }
 
@@ -118,6 +126,8 @@ class Price extends CryptocompareApi
      * @param string $e
      * @param bool $sign
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getSubsWatchlist($tryConversion = "true", $fsyms = array("BTC", "ETH"), $tsym = "EUR", $e = "CCCAGG", $sign = false)
     {
@@ -133,7 +143,7 @@ class Price extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/subsWatchlist", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/subsWatchlist", $params);
         return $r;
     }
 
@@ -144,6 +154,8 @@ class Price extends CryptocompareApi
      * @param string $e
      * @param bool $sign
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getSubs($tryConversion = "true", $fsym = "BTC", $tsyms = array("USD", "EUR"), $e = "CCCAGG", $sign = false)
     {
@@ -159,7 +171,7 @@ class Price extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/subs", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/subs", $params);
         return $r;
     }
 }

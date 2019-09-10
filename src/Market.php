@@ -15,6 +15,8 @@ class Market extends CryptocompareApi
      * @param int $limit
      * @param bool $sign
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getTopPairs($fsym = "BTC", $limit = 5, $sign = false ) {
         $params = array(
@@ -22,7 +24,7 @@ class Market extends CryptocompareApi
             "limit" => $limit,
             "sign" => $sign,
         );
-        $pairs = $this->getRequest(CryptocompareApi::PUBLIC,"/data/top/pairs", $params);
+        $pairs = $this->getRequest(CryptocompareApi::PUB,"/data/top/pairs", $params);
         return $pairs;
     }
 
@@ -32,6 +34,8 @@ class Market extends CryptocompareApi
      * @param int $limit
      * @param bool $sign
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getTopExchanges($fsym = "BTC", $tsym = "EUR", $limit = 5, $sign = false) {
 
@@ -44,7 +48,7 @@ class Market extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/exchanges", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/top/exchanges", $params);
         return $r;
     }
 
@@ -53,6 +57,8 @@ class Market extends CryptocompareApi
      * @param int $limit
      * @param bool $sign
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getTopVolumes($tsym = "EUR", $limit = 20, $sign = false) {
 
@@ -64,13 +70,15 @@ class Market extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/top/volumes", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/top/volumes", $params);
         return $r;
     }
 
     /**
      * @param bool $sign
      * @return mixed
+     * @throws InvalidRequest
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getList($sign = false) {
 
@@ -80,7 +88,7 @@ class Market extends CryptocompareApi
             "extraParams" => $extraParams,
             "sign" => $sign
         );
-        $r = $this->getRequest(CryptocompareApi::PUBLIC, "/data/all/exchanges", $params);
+        $r = $this->getRequest(CryptocompareApi::PUB, "/data/all/exchanges", $params);
         return $r;
     }
 }
