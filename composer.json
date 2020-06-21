@@ -1,5 +1,5 @@
 {
-  "name": "bagimuka/cryptocompare-api-php-wrapper",
+  "name": "loeken/cryptocompare-api-php-wrapper",
   "description": "Php wrapper class based on guzzle to query the cryptocompare.com api",
   "type": "library",
   "require": {
