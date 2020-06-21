@@ -14,7 +14,7 @@
     "name": "Lukas Wenning",
     "email": "lwenning@cryptocompare.com"
   }],
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
       "Cryptocompare\\": "src/"
