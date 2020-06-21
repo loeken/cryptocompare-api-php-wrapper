@@ -6,7 +6,6 @@
     "guzzlehttp/guzzle": "6.3"
   },
   "require-dev": {
-    "guzzlehttp/guzzle": "6.3",
     "phpunit/phpunit": "^7"
   },
   "license": "BSD-3-Clause",
