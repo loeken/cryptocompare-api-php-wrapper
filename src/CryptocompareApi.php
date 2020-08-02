@@ -7,8 +7,9 @@
  */
 namespace Cryptocompare;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException as GuzzleExceptionAlias;
+use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Psr7\Request;
 
 class CryptocompareApi
 {
