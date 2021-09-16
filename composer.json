@@ -3,10 +3,9 @@
   "description": "Php wrapper class based on guzzle to query the cryptocompare.com api",
   "type": "library",
   "require": {
-    "guzzlehttp/guzzle": "6.3.*"
+    "guzzlehttp/guzzle": "6.3"
   },
   "require-dev": {
-    "guzzlehttp/guzzle": "6.3.*",
     "phpunit/phpunit": "^7"
   },
   "license": "BSD-3-Clause",
